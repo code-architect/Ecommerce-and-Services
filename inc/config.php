@@ -3,7 +3,6 @@
 //checking session is open or not
 if(!isset($_SESSION)){
     session_start();
-    ob_start();
 }
 
 
@@ -11,7 +10,7 @@ if(!isset($_SESSION)){
 defined("DS") || define("DS", DIRECTORY_SEPARATOR);
 
 // site domain name with http
-defined("SITE_URL") || define("SITE_URL", "http://".$_SERVER['SERVER_NAME'].DS."sand_box".DS."ecommerce_and_services");
+defined("SITE_URL") || define("SITE_URL", "http://".$_SERVER['SERVER_NAME']."/sand_box/ecommerce_and_services");
 
 // Root Path
 defined("ROOT_PATH") || define("ROOT_PATH", realpath(dirname(__FILE__).DS."..".DS));

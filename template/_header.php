@@ -20,7 +20,7 @@
 <body>
 <div id="header">
     <div id="header_in">
-        <h5><a href="/">Business name</a></h5>
+        <h5><a href="<?php echo SITE_URL; ?>">Business name</a></h5>
     </div>
 </div>
 <div id="outer">

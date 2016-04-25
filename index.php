@@ -1,7 +1,7 @@
 <?php
-/**
- * File: Index File
- * Work: Main Index File
- * User: Code-Architect
- */
-?>
+
+require_once("inc/autoload.php");
+
+$core = new Core();
+$core->run();
+
