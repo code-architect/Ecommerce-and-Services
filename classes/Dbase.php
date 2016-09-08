@@ -91,7 +91,7 @@ class Dbase {
             {
                 $value = stripcslashes($value);
             }
-            $value = mysqli_real_escape_string($this->_conndb,$value);
+            $value = mysqli_real_escape_string($value, $this->_conndb);
         }else
         {
             if(!get_magic_quotes_gpc())
@@ -105,7 +105,44 @@ class Dbase {
 
 
 //--------------------------------------------------------------------------------------------------//
+
+
+    /**
+     * Mysqli query
+     * @param $sql
+     * @return bool|mysqli_result1
+     */
+    public function query($sql)
+    {
+        $this->_last_query = $sql;
+        $result = mysqli_query($sql, $this->_conndb);
+        $this->displayQuery($result);
+        return $result;
+
+    }
+
 //--------------------------------------------------------------------------------------------------//
+
+
+    /**
+     * Check if mysqli query was successful or not
+     * if not show error, else store number affected rows
+     * @param $result
+     */
+    public function displayQuery($result)
+    {
+        if(!$result)
+        {
+            $output = "Database Query Failed: ".mysqli_error($this->_conndb)."<br/>";
+            $output .= "Last SQL Query was: ".$this->_last_query;
+            die($output);
+        }
+        else
+        {
+            $this->_affected_rows = mysqli_affected_rows($this->_conndb);
+        }
+    }
+
 //--------------------------------------------------------------------------------------------------//
 //--------------------------------------------------------------------------------------------------//
 //--------------------------------------------------------------------------------------------------//
