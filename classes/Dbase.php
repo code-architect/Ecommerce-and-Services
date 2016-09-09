@@ -91,7 +91,7 @@ class Dbase {
             {
                 $value = stripcslashes($value);
             }
-            $value = mysqli_real_escape_string($value, $this->_conndb);
+            $value = mysqli_real_escape_string($this->_conndb, $value);
         }else
         {
             if(!get_magic_quotes_gpc())
@@ -115,7 +115,7 @@ class Dbase {
     public function query($sql)
     {
         $this->_last_query = $sql;
-        $result = mysqli_query($sql, $this->_conndb);
+        $result = mysqli_query($this->_conndb, $sql);
         $this->displayQuery($result);
         return $result;
 
@@ -144,6 +144,53 @@ class Dbase {
     }
 
 //--------------------------------------------------------------------------------------------------//
+
+
+    /**
+     * Find all data
+     * @param $sql
+     * @return array
+     */
+    public function fetchAll($sql)
+    {
+        $result  = $this->query($sql);
+        $out = [];
+        while($row = mysqli_fetch_assoc($result))
+        {
+            $out[] = $row;
+        }
+        mysqli_free_result($result);
+        return $out;
+    }
+
+
+//--------------------------------------------------------------------------------------------------//
+
+
+    /**
+     * Fetch only one record
+     * @param $sql
+     * @return mixed
+     */
+    public function fetchOne($sql)
+    {
+        $out = $this->fetchAll($sql);
+        return array_shift($out);
+    }
+
+//--------------------------------------------------------------------------------------------------//
+
+
+    /**
+     * Return last inserted id
+     * @return int|string
+     */
+    public function lastId()
+    {
+        return mysqli_insert_id($this->_conndb);
+    }
+
+
 //--------------------------------------------------------------------------------------------------//
 //--------------------------------------------------------------------------------------------------//
 }
