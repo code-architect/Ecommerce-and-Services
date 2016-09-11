@@ -4,6 +4,11 @@
  * Work: Header File
  * User: Code-Architect
  */
+$objCatalogue= new Catalogue();
+$cats = $objCatalogue->getCategories();
+
+$objBusines = new Business();
+$business = $objBusines->getBusiness();
 ?>
 
 
@@ -20,7 +25,7 @@
 <body>
 <div id="header">
     <div id="header_in">
-        <h5><a href="<?php echo SITE_URL; ?>">Business name</a></h5>
+        <h5><a href="<?php echo SITE_URL; ?>"><?php echo $business['name']; ?></a></h5>
     </div>
 </div>
 <div id="outer">
@@ -28,6 +33,17 @@
         <div id="left">
             <h2>Categories</h2>
             <ul id="navigation">
+                <?php if(!empty($cats)){
+                    foreach($cats as $cat)
+                    {
+                        echo "<li><a href=\"/?page=catalogue&amp;category=".$cat['id']."\"";
+                        echo Helper::getActive(['category' => $cat['id']]);
+                        echo ">";
+                        echo Helper::encodeHTML($cat['name']);
+                        echo "</a></li>";
+                    }
+                }
+                ?>
                 <li><a href="#">link</a></li>
             </ul>
         </div>
