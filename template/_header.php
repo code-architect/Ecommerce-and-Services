@@ -36,7 +36,7 @@ $business = $objBusines->getBusiness();
                 <?php if(!empty($cats)){
                     foreach($cats as $cat)
                     {
-                        echo "<li><a href=\"/?page=catalogue&amp;category=".$cat['id']."\"";
+                        echo "<li><a href=\"?page=catalogue&amp;category=".$cat['id']."\"";
                         echo Helper::getActive(['category' => $cat['id']]);
                         echo ">";
                         echo Helper::encodeHTML($cat['name']);
@@ -44,7 +44,7 @@ $business = $objBusines->getBusiness();
                     }
                 }
                 ?>
-                <li><a href="#">link</a></li>
+                
             </ul>
         </div>
         <div id="right">

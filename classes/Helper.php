@@ -28,5 +28,34 @@ class Helper {
 			break;
 		}
 	}
+
+
+    /**
+     * Getting the active page link
+     * @param null $page
+     * @return null|string
+     */
+    public static function getActive($page = null)
+    {
+        // check if not empty
+        if(!empty($page))
+        {
+            //check if it's an array
+            if(is_array($page))
+            {
+                $error = [];
+                foreach($page as $key => $value)
+                {
+                    // if it doesn't exists put this key into this error array
+                    if(Url::getParam($key) != $value)
+                    {
+                        array_push($error, $key);
+                    }
+                }
+                return empty($error) ? " class=\"act\"" : null;
+            }
+        }
+        return $page == Url::cPage()? " class=\"act\"" : null;
+    }
 	
 }
