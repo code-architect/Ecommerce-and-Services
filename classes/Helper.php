@@ -29,6 +29,8 @@ class Helper {
 		}
 	}
 
+//---------------------------------------------------------------------------------------//
+
 
     /**
      * Getting the active page link
@@ -57,5 +59,28 @@ class Helper {
         }
         return $page == Url::cPage()? " class=\"act\"" : null;
     }
+
+
+//--------------------------------------------------------------------------------//
+
+
+    /**
+     * Return Image size
+     * @param $image
+     * @param $case
+     * @return mixed
+     */
+    public static function getImgSize($image, $case)
+    {
+        // check if the file exists
+        if(is_file($image))
+        {
+            // 0 => width, 1 => height, 2 => type, 3 => attributes
+            $size = getimagesize($image);
+            return $size[$case];
+        }
+    }
+
+
 	
 }

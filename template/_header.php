@@ -44,7 +44,7 @@ $business = $objBusines->getBusiness();
                     }
                 }
                 ?>
-                
+
             </ul>
         </div>
         <div id="right">
