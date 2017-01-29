@@ -33,6 +33,7 @@ if(empty($cat))
                 <div class="catalogue_wrapper">
                     <div class="catalogue_wrapper_left">
                         <?php
+                        // if image is not empty, show image
                         $image =!empty($row['image']) ?
                             'media/catalogue/'.$row['image'] :
                             'media/catalogue/unavailable.png';

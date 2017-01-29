@@ -7,8 +7,8 @@
 $objCatalogue= new Catalogue();
 $cats = $objCatalogue->getCategories();
 
-$objBusines = new Business();
-$business = $objBusines->getBusiness();
+$objBusiness = new Business();
+$business = $objBusiness->getBusiness();
 ?>
 
 
@@ -33,7 +33,9 @@ $business = $objBusines->getBusiness();
         <div id="left">
             <h2>Categories</h2>
             <ul id="navigation">
-                <?php if(!empty($cats)){
+                <?php
+                // Check if not empty category table, then show
+                if(!empty($cats)){
                     foreach($cats as $cat)
                     {
                         echo "<li><a href=\"?page=catalogue&amp;category=".$cat['id']."\"";
